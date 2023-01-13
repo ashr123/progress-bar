@@ -34,7 +34,7 @@
 	<g th:if="${title.isPresent()}"
 	   fill="#fff"
 	   text-anchor="start"
-	   font-family="DejaVu Sans,Verdana,Geneva,sans-serif"
+	   font-family="DejaVu Sans, Verdana, Geneva, sans-serif"
 	   font-size="11">
 		<text fill="#010101"
 			  fill-opacity=".3"
