@@ -22,7 +22,7 @@ public class WebController
 						"#5cb85c";
 	}
 
-	@RequestMapping("/")
+	@RequestMapping(value = "/")
 	public String generateProgress(@RequestParam @PositiveOrZero double progress,
 								   @RequestParam(required = false) Optional<String> title,
 								   @RequestParam(defaultValue = "100") @Positive double scale,
@@ -40,7 +40,6 @@ public class WebController
 				.addAttribute("progress_color", getProgressColor(progress, scale))
 				.addAttribute("suffix", suffix);
 
-		//noinspection SpringMVCViewInspection
 		return "progress";
 	}
 }

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.github.ashr123</groupId>
 	<artifactId>progress-bar</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>progress-bar</name>
 	<description>progress-bar</description>
 	<properties>
