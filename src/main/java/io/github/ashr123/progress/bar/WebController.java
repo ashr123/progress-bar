@@ -29,6 +29,7 @@ public class WebController
 				.addAttribute("scale", scale)
 				.addAttribute("progress", progress)
 				.addAttribute("progress_width", width.isPresent() ? width.get() : title.isPresent() ? 60 : 90)
+				.addAttribute("progress_color", Utils.getProgressColor(progress, scale))
 				.addAttribute("suffix", suffix);
 
 		//noinspection SpringMVCViewInspection
