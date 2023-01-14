@@ -14,14 +14,6 @@ import java.util.Optional;
 @Validated
 public class WebController
 {
-	private static String getProgressColor(double progress, double scale)
-	{
-		final double ratio = progress / scale;
-		return ratio < 1.0 / 3 ? "#d9534f" :
-				ratio < 2.0 / 3 ? "#f0ad4e" :
-						"#5cb85c";
-	}
-
 	@RequestMapping(value = "/", produces = "image/svg+xml")
 	public String generateProgress(@RequestParam @PositiveOrZero double progress,
 								   @RequestParam(required = false) Optional<String> title,
@@ -37,7 +29,6 @@ public class WebController
 				.addAttribute("scale", scale)
 				.addAttribute("progress", progress)
 				.addAttribute("progress_width", width.isPresent() ? width.get() : title.isPresent() ? 60 : 90)
-				.addAttribute("progress_color", getProgressColor(progress, scale))
 				.addAttribute("suffix", suffix);
 
 		//noinspection SpringMVCViewInspection

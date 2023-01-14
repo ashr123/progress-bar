@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <svg height="20"
-	 th:attr="width=${title_width + progress_width}"
+	 th:width="${title_width + progress_width}"
 	 version="1.1"
 	 xmlns="http://www.w3.org/2000/svg"
 	 preserveAspectRatio="xMidYMid">
@@ -13,21 +13,25 @@
 		<stop offset="1"
 			  stop-opacity=".1"/>
 	</linearGradient>
-
-	<rect th:attr="width=${title_width + progress_width}, fill='#' + ${title_color}"
+	<rect th:width="${title_width + progress_width}"
+		  th:fill="|#${title_color}|"
 		  x="0"
 		  rx="4"
 		  height="20"/>
-	<rect th:attr="x=${title_width}, width=${progress_width}"
+	<rect th:x="${title_width}"
+		  th:width="${progress_width}"
 		  rx="4"
 		  height="20"
 		  fill="#555"/>
-	<rect th:attr="x=${title_width}, fill=${progress_color}, width=${(progress / scale < 1 ? progress / scale : 1) * progress_width}"
+	<rect th:x="${title_width}"
+		  th:fill="${@utils.getProgressColor(progress, scale)}"
+		  th:width="${@utils.min(progress / scale, 1) * progress_width}"
 		  rx="4"
 		  height="20"/>
 	<path th:if="${title.isPresent()}"
-		  th:attr="fill=${progress_color}, d='M' + ${title_width} + ' 0h4v20h-4z'"/>
-	<rect th:attr="width=${title_width + progress_width}"
+		  th:fill="${@utils.getProgressColor(progress, scale)}"
+		  th:d="|M${title_width} 0h4v20h-4z|"/>
+	<rect th:width="${title_width + progress_width}"
 		  rx="4"
 		  height="20"
 		  fill="url(#a)"/>
@@ -36,9 +40,9 @@
 	   text-anchor="start"
 	   font-family="DejaVu Sans, Verdana, Geneva, sans-serif"
 	   font-size="11">
-		<text fill="#010101"
+		<text th:text="${title.get()}"
+			  fill="#010101"
 			  fill-opacity=".3"
-			  th:text="${title.get()}"
 			  x="4"
 			  y="15"/>
 		<text th:text="${title.get()}"
@@ -49,13 +53,13 @@
 	   text-anchor="middle"
 	   font-family="DejaVu Sans, Verdana, Geneva, sans-serif"
 	   font-size="11">
-		<text th:attr="x=${progress_width / 2 + title_width}"
-			  th:text="${progress + suffix}"
+		<text th:text="${@utils.formatDecimal(progress) + suffix}"
+			  th:x="${progress_width / 2 + title_width}"
 			  y="15"
 			  fill="#010101"
 			  fill-opacity=".3"/>
-		<text th:attr="x=${progress_width / 2 + title_width}"
-			  th:text="${progress + suffix}"
+		<text th:text="${@utils.formatDecimal(progress) + suffix}"
+			  th:x="${progress_width / 2 + title_width}"
 			  y="14"/>
 	</g>
 </svg>
