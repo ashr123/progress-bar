@@ -1,5 +1,6 @@
 package io.github.ashr123.progress.bar;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.stereotype.Controller;
@@ -15,12 +16,13 @@ import java.util.Optional;
 public class WebController
 {
 	@RequestMapping(value = "/", produces = "image/svg+xml")
-	public String generateProgress(@RequestParam @PositiveOrZero double progress,
+	public String generateProgress(@RequestParam @PositiveOrZero @Max(100) double progress,
 								   @RequestParam(required = false) Optional<String> title,
 								   @RequestParam(defaultValue = "100") @Positive double scale,
 								   @RequestParam(required = false) Optional<Double> width,
 								   @RequestParam(defaultValue = "428bca") String color,
 								   @RequestParam(defaultValue = "%") String suffix,
+								   @RequestParam(defaultValue = "2") @PositiveOrZero int maximumFractionDigits,
 								   Model model)
 	{
 		model.addAttribute("title", title)
@@ -30,7 +32,8 @@ public class WebController
 				.addAttribute("progress", progress)
 				.addAttribute("progress_width", width.isPresent() ? width.get() : title.isPresent() ? 60 : 90)
 				.addAttribute("progress_color", Utils.getProgressColor(progress, scale))
-				.addAttribute("suffix", suffix);
+				.addAttribute("suffix", suffix)
+				.addAttribute("maximum_fraction_digits", maximumFractionDigits);
 
 		//noinspection SpringMVCViewInspection
 		return "progress";

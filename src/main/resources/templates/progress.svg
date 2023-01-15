@@ -53,12 +53,12 @@
 	   text-anchor="middle"
 	   font-family="DejaVu Sans, Verdana, Geneva, sans-serif"
 	   font-size="11">
-		<text th:text="${@utils.formatDecimal(progress) + suffix}"
+		<text th:text="${@utils.formatDecimal(progress, maximum_fraction_digits) + suffix}"
 			  th:x="${progress_width / 2 + title_width}"
 			  y="15"
 			  fill="#010101"
 			  fill-opacity=".3"/>
-		<text th:text="${@utils.formatDecimal(progress) + suffix}"
+		<text th:text="${@utils.formatDecimal(progress, maximum_fraction_digits) + suffix}"
 			  th:x="${progress_width / 2 + title_width}"
 			  y="14"/>
 	</g>

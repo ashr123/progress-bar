@@ -7,20 +7,15 @@ import java.text.NumberFormat;
 @Component
 public class Utils
 {
-	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance();
-
-	static
-	{
-		NUMBER_FORMAT.setMaximumFractionDigits(2);
-	}
-
 	private Utils()
 	{
 	}
 
-	public static String formatDecimal(double d)
+	public static String formatDecimal(double d, int maximumFractionDigits)
 	{
-		return NUMBER_FORMAT.format(d);
+		final NumberFormat numberFormat = NumberFormat.getInstance();
+		numberFormat.setMaximumFractionDigits(maximumFractionDigits);
+		return numberFormat.format(d);
 	}
 
 	public static double min(double a, double b)
