@@ -6,6 +6,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,8 +16,8 @@ import java.util.Optional;
 @Validated
 public class WebController
 {
-	@RequestMapping(value = "/", produces = "image/svg+xml")
-	public String generateProgress(@RequestParam @PositiveOrZero @Max(100) double progress,
+	@RequestMapping(value = "/{progress}", produces = "image/svg+xml")
+	public String generateProgress(@PathVariable @PositiveOrZero @Max(100) double progress,
 								   @RequestParam(required = false) Optional<String> title,
 								   @RequestParam(defaultValue = "100") @Positive double scale,
 								   @RequestParam(required = false) Optional<Double> width,
