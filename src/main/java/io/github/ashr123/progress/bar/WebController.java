@@ -14,8 +14,7 @@ import java.util.Optional;
 
 @Controller
 @Validated
-public class WebController
-{
+public class WebController {
 	@RequestMapping(value = "/{progress}", produces = "image/svg+xml")
 	public String generateProgress(@PathVariable @PositiveOrZero @Max(100) double progress,
 								   @RequestParam(required = false) Optional<String> title,
@@ -24,8 +23,7 @@ public class WebController
 								   @RequestParam(defaultValue = "428bca") String color,
 								   @RequestParam(defaultValue = "%") String suffix,
 								   @RequestParam(defaultValue = "2") @PositiveOrZero int maximumFractionDigits,
-								   Model model)
-	{
+								   Model model) {
 		model.addAttribute("title", title)
 				.addAttribute("title_width", title.map(s -> 10 + 6 * s.length()).orElse(0))
 				.addAttribute("title_color", color)
