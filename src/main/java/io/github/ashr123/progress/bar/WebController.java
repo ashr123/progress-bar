@@ -22,17 +22,17 @@ public class WebController {
 								   @RequestParam(required = false) Optional<Double> width,
 								   @RequestParam(defaultValue = "428bca") String color,
 								   @RequestParam(defaultValue = "%") String suffix,
-								   @RequestParam(defaultValue = "2") @PositiveOrZero int maximumFractionDigits,
+								   @RequestParam(name = "maximum-fraction-digits", defaultValue = "2") @PositiveOrZero int maximumFractionDigits,
 								   Model model) {
 		model.addAttribute("title", title)
-				.addAttribute("title_width", title.map(s -> 10 + 6 * s.length()).orElse(0))
-				.addAttribute("title_color", color)
+				.addAttribute("titleWidth", title.map(s -> 10 + 6 * s.length()).orElse(0))
+				.addAttribute("titleColor", color)
 				.addAttribute("scale", scale)
 				.addAttribute("progress", progress)
-				.addAttribute("progress_width", width.isPresent() ? width.get() : title.isPresent() ? 60 : 90)
-				.addAttribute("progress_color", Utils.getProgressColor(progress, scale))
+				.addAttribute("progressWidth", width.isPresent() ? width.get() : title.isPresent() ? 60 : 90)
+				.addAttribute("progressColor", Utils.getProgressColor(progress, scale))
 				.addAttribute("suffix", suffix)
-				.addAttribute("maximum_fraction_digits", maximumFractionDigits);
+				.addAttribute("maximumFractionDigits", maximumFractionDigits);
 
 		//noinspection SpringMVCViewInspection
 		return "progress";

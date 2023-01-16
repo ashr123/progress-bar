@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <svg height="20"
-	 th:with="total_width=${title_width + progress_width}"
-	 th:width="${total_width}"
+	 th:with="totalWidth=${titleWidth + progressWidth}"
+	 th:width="${totalWidth}"
 	 version="1.1"
 	 xmlns="http://www.w3.org/2000/svg"
 	 preserveAspectRatio="xMidYMid">
@@ -14,25 +14,25 @@
 		<stop offset="1"
 			  stop-opacity=".1"/>
 	</linearGradient>
-	<rect th:width="${total_width}"
-		  th:fill="|#${title_color}|"
+	<rect th:width="${totalWidth}"
+		  th:fill="|#${titleColor}|"
 		  x="0"
 		  rx="4"
 		  height="20"/>
-	<rect th:x="${title_width}"
-		  th:width="${progress_width}"
+	<rect th:x="${titleWidth}"
+		  th:width="${progressWidth}"
 		  rx="4"
 		  height="20"
 		  fill="#555"/>
-	<rect th:x="${title_width}"
-		  th:fill="${progress_color}"
-		  th:width="${@utils.min(progress / scale, 1) * progress_width}"
+	<rect th:x="${titleWidth}"
+		  th:fill="${progressColor}"
+		  th:width="${@utils.min(progress / scale, 1) * progressWidth}"
 		  rx="4"
 		  height="20"/>
 	<path th:if="${title.isPresent()}"
-		  th:fill="${progress_color}"
-		  th:d="|M${title_width} 0h4v20h-4z|"/>
-	<rect th:width="${total_width}"
+		  th:fill="${progressColor}"
+		  th:d="|M${titleWidth} 0h4v20h-4z|"/>
+	<rect th:width="${totalWidth}"
 		  rx="4"
 		  height="20"
 		  fill="url(#a)"/>
@@ -54,14 +54,14 @@
 	   text-anchor="middle"
 	   font-family="DejaVu Sans, Verdana, Geneva, sans-serif"
 	   font-size="11"
-	   th:with="text_text=${@utils.formatDecimal(progress, maximum_fraction_digits) + suffix}, text_x=${progress_width / 2 + title_width}">
-		<text th:text="${text_text}"
-			  th:x="${text_x}"
+	   th:with="textText=${@utils.formatDecimal(progress, maximumFractionDigits) + suffix}, textX=${progressWidth / 2 + titleWidth}">
+		<text th:text="${textText}"
+			  th:x="${textX}"
 			  y="15"
 			  fill="#010101"
 			  fill-opacity=".3"/>
-		<text th:text="${text_text}"
-			  th:x="${text_x}"
+		<text th:text="${textText}"
+			  th:x="${textX}"
 			  y="14"/>
 	</g>
 </svg>
