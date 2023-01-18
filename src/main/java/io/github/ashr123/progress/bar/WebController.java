@@ -16,7 +16,7 @@ import java.util.Optional;
 @Controller
 @Validated
 public class WebController {
-	@GetMapping(value = "/{progress}", produces = "image/svg+xml")
+	@GetMapping(value = "/{progress}/", produces = "image/svg+xml")
 	public String generateProgress(
 			@PathVariable
 			@PositiveOrZero
