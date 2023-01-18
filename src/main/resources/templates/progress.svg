@@ -15,7 +15,7 @@
 			  stop-opacity=".1"/>
 	</linearGradient>
 	<rect th:width="${totalWidth}"
-		  th:fill="|#${titleColor}|"
+		  th:fill="${titleColor}"
 		  x="0"
 		  rx="4"
 		  height="20"/>
