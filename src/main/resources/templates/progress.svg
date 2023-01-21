@@ -1,67 +1,20 @@
 <?xml version="1.1" encoding="UTF-8"?>
-<svg height="20"
-	 th:with="totalWidth=${titleWidth + progressWidth}"
-	 th:width="${totalWidth}"
-	 version="1.1"
-	 xmlns="http://www.w3.org/2000/svg"
-	 preserveAspectRatio="xMidYMid">
-	<linearGradient id="a"
-					x2="0"
-					y2="100%">
-		<stop offset="0"
-			  stop-color="#bbb"
-			  stop-opacity=".1"/>
-		<stop offset="1"
-			  stop-opacity=".1"/>
+<svg th:with="totalWidth=${titleWidth + progressWidth}" th:width="${totalWidth}" height="20" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+	<linearGradient id="a" x2="0" y2="100%">
+		<stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+		<stop offset="1" stop-opacity=".1"/>
 	</linearGradient>
-	<rect th:width="${totalWidth}"
-		  th:fill="${titleColor}"
-		  x="0"
-		  rx="4"
-		  height="20"/>
-	<rect th:x="${titleWidth}"
-		  th:width="${progressWidth}"
-		  rx="4"
-		  height="20"
-		  fill="#555"/>
-	<rect th:x="${titleWidth}"
-		  th:fill="${progressColor}"
-		  th:width="${@utils.min(progress / scale, 1) * progressWidth}"
-		  rx="4"
-		  height="20"/>
-	<path th:if="${title.isPresent()}"
-		  th:fill="${progressColor}"
-		  th:d="|M${titleWidth} 0h4v20h-4z|"/>
-	<rect th:width="${totalWidth}"
-		  rx="4"
-		  height="20"
-		  fill="url(#a)"/>
-	<g th:if="${title.isPresent()}"
-	   fill="#fff"
-	   text-anchor="start"
-	   font-family="DejaVu Sans, Verdana, Geneva, sans-serif"
-	   font-size="11">
-		<text th:text="${title.get()}"
-			  fill="#010101"
-			  fill-opacity=".3"
-			  x="4"
-			  y="15"/>
-		<text th:text="${title.get()}"
-			  x="4"
-			  y="14"/>
+	<rect th:width="${totalWidth}" th:fill="${titleColor}" x="0" rx="4" height="20"/>
+	<rect th:x="${titleWidth}" th:width="${progressWidth}" rx="4" height="20" fill="#555"/>
+	<rect th:x="${titleWidth}" th:fill="${progressColor}" th:width="${@utils.min(progress / scale, 1) * progressWidth}" rx="4" height="20"/>
+	<path th:if="${title.isPresent()}" th:fill="${progressColor}" th:d="|M${titleWidth} 0h4v20h-4z|"/>
+	<rect th:width="${totalWidth}" rx="4" height="20" fill="url(#a)"/>
+	<g th:if="${title.isPresent()}" fill="#fff" text-anchor="start" font-family="DejaVu Sans, Verdana, Geneva, sans-serif" font-size="11">
+		<text th:text="${title.get()}" fill="#010101" fill-opacity=".3" x="4" y="15"/>
+		<text th:text="${title.get()}" x="4" y="14"/>
 	</g>
-	<g fill="#fff"
-	   text-anchor="middle"
-	   font-family="DejaVu Sans, Verdana, Geneva, sans-serif"
-	   font-size="11"
-	   th:with="textText=${@utils.formatDecimal(progress, maximumFractionDigits) + suffix}, textX=${progressWidth / 2 + titleWidth}">
-		<text th:text="${textText}"
-			  th:x="${textX}"
-			  y="15"
-			  fill="#010101"
-			  fill-opacity=".3"/>
-		<text th:text="${textText}"
-			  th:x="${textX}"
-			  y="14"/>
+	<g th:with="textText=${@utils.formatDecimal(progress, maximumFractionDigits) + suffix}, textX=${progressWidth / 2 + titleWidth}" fill="#fff" text-anchor="middle" font-family="DejaVu Sans, Verdana, Geneva, sans-serif" font-size="11">
+		<text th:text="${textText}" th:x="${textX}" y="15" fill="#010101" fill-opacity=".3"/>
+		<text th:text="${textText}" th:x="${textX}" y="14"/>
 	</g>
 </svg>
