@@ -1,5 +1,6 @@
 package io.github.ashr123.progress.bar;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.text.NumberFormat;
@@ -10,7 +11,7 @@ public class Utils {
 	}
 
 	public static String formatDecimal(double d, int maximumFractionDigits) {
-		final NumberFormat numberFormat = NumberFormat.getInstance();
+		final NumberFormat numberFormat = NumberFormat.getInstance(LocaleContextHolder.getLocale());
 		numberFormat.setMaximumFractionDigits(maximumFractionDigits);
 		return numberFormat.format(d);
 	}
