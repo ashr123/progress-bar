@@ -34,6 +34,7 @@ public class WebController {
 			Optional<@Positive Double> width,
 
 			@RequestParam(defaultValue = "20")
+			@Positive
 			double height,
 
 			@RequestParam(name = "title-color",
