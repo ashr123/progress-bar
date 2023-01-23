@@ -33,6 +33,9 @@ public class WebController {
 			@RequestParam(required = false)
 			Optional<@Positive Double> width,
 
+			@RequestParam(defaultValue = "20")
+			double height,
+
 			@RequestParam(name = "title-color",
 					defaultValue = "#428bca")
 			@Pattern(regexp = "^#?(?:(?:[\\da-f]{3}){1,2}|(?:[\\da-f]{4}){1,2})$",
@@ -55,6 +58,7 @@ public class WebController {
 				.addAttribute("scale", scale)
 				.addAttribute("progress", progress)
 				.addAttribute("progressWidth", width.isPresent() ? width.get() : title.isPresent() ? 60 : 90)
+				.addAttribute("progressHeight", height)
 				.addAttribute("progressColor", Utils.getProgressColor(progress, scale))
 				.addAttribute("suffix", suffix)
 				.addAttribute("maximumFractionDigits", maximumFractionDigits);
