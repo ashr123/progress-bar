@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" th:with="totalWidth=${titleWidth + progressWidth}, textY=${progressHeight / 2.0 + 1}" th:width="${totalWidth}" th:height="${progressHeight}" dominant-baseline="middle" text-anchor="middle" font-family="DejaVu Sans, Verdana, Geneva, sans-serif" font-size="11">
+<svg xmlns="http://www.w3.org/2000/svg" th:with="totalWidth=${titleWidth + progressWidth}, textY=${progressHeight / 2.0 + 1}" th:width="${totalWidth}" th:height="${progressHeight}" font-family="DejaVu Sans, Verdana, Geneva, sans-serif" font-size="11">
 	<linearGradient id="a" x2="0" y2="100%">
 		<stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
 		<stop offset="1" stop-opacity=".1"/>
@@ -9,11 +9,11 @@
 	<path th:if="${title.isPresent()}" th:fill="${progressColor}" th:d="|M${titleWidth} 0h4v${progressHeight}h-4z|"/>
 	<rect th:width="${totalWidth}" th:height="${progressHeight}" rx="4" fill="url(#a)"/>
 	<g th:if="${title.isPresent()}" th:with="textX=${titleWidth / 2}" fill="#fff">
-		<text th:text="${title.get()}" th:x="${textX}" th:y="${textY}" fill="#010101" fill-opacity=".3"/>
-		<text th:text="${title.get()}" th:x="${textX}" y="50%"/>
+		<text th:text="${title.get()}" th:x="${textX}" th:y="${textY}" dominant-baseline="middle" text-anchor="middle" fill="#010101" fill-opacity=".3"/>
+		<text th:text="${title.get()}" th:x="${textX}" dominant-baseline="middle" text-anchor="middle" y="50%"/>
 	</g>
 	<g th:with="textText=${@utils.formatDecimal(progress, maximumFractionDigits) + suffix}, textX=${progressWidth / 2.0 + titleWidth}" fill="#fff">
-		<text th:text="${textText}" th:x="${textX}" th:y="${textY}" fill="#010101" fill-opacity=".3"/>
-		<text th:text="${textText}" th:x="${textX}" y="50%"/>
+		<text th:text="${textText}" th:x="${textX}" th:y="${textY}" dominant-baseline="middle" text-anchor="middle" fill="#010101" fill-opacity=".3"/>
+		<text th:text="${textText}" th:x="${textX}" dominant-baseline="middle" text-anchor="middle" y="50%"/>
 	</g>
 </svg>
