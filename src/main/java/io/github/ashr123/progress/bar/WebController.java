@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Optional;
 
@@ -17,40 +18,40 @@ import java.util.Optional;
 @Validated
 public class WebController {
 	@GetMapping(value = "{progress}", produces = "image/svg+xml")
-	public String generateProgress(@PathVariable
-								   @PositiveOrZero
-								   @Max(100)
-								   double progress,
+	public String generateProgressBar(@PathVariable
+									  @PositiveOrZero
+									  @Max(100)
+									  double progress,
 
-								   @RequestParam(required = false)
-								   Optional<String> title,
+									  @RequestParam(required = false)
+									  Optional<String> title,
 
-								   @RequestParam(defaultValue = "100")
-								   @Positive
-								   double scale,
+									  @RequestParam(defaultValue = "100")
+									  @Positive
+									  double scale,
 
-								   @RequestParam(required = false)
-								   Optional<@Positive Double> width,
+									  @RequestParam(required = false)
+									  Optional<@Positive Double> width,
 
-								   @RequestParam(defaultValue = "20")
-								   @Positive
-								   double height,
+									  @RequestParam(defaultValue = "20")
+									  @Positive
+									  double height,
 
-								   @RequestParam(name = "title-color",
-										   defaultValue = "#428bca")
-								   @Pattern(regexp = "^#?(?:(?:[\\da-f]{3}){1,2}|(?:[\\da-f]{4}){1,2})$",
-										   flags = Pattern.Flag.CASE_INSENSITIVE)
-								   String titleColor,
+									  @RequestParam(name = "title-color",
+											  defaultValue = "#428bca")
+									  @Pattern(regexp = "^#?(?:(?:[\\da-f]{3}){1,2}|(?:[\\da-f]{4}){1,2})$",
+											  flags = Pattern.Flag.CASE_INSENSITIVE)
+									  String titleColor,
 
-								   @RequestParam(defaultValue = "%")
-								   String suffix,
+									  @RequestParam(defaultValue = "%")
+									  String suffix,
 
-								   @RequestParam(name = "maximum-fraction-digits",
-										   defaultValue = "2")
-								   @PositiveOrZero
-								   int maximumFractionDigits,
+									  @RequestParam(name = "maximum-fraction-digits",
+											  defaultValue = "2")
+									  @PositiveOrZero
+									  int maximumFractionDigits,
 
-								   Model model) {
+									  Model model) {
 		model.addAttribute("title", title)
 				.addAttribute("titleWidth", title.map(s -> 10 + 6 * s.length()).orElse(0))
 				.addAttribute("titleColor", titleColor.charAt(0) == '#' ? titleColor : '#' + titleColor)
@@ -64,5 +65,10 @@ public class WebController {
 
 		//noinspection SpringMVCViewInspection
 		return "progress";
+	}
+
+	@GetMapping("favicon.ico")
+	@ResponseBody
+	private void returnNoFavicon() {
 	}
 }
